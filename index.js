@@ -5,7 +5,7 @@ const https = require('https')
 async function run() {
     try {
         // Fetching github token
-        const jwt = await core.getIDToken(aud);
+        const jwt = await core.getIDToken();
         core.setOutput("jwt", jwt);
       
       
