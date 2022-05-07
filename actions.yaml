@@ -1,0 +1,16 @@
+name: 'Github jwt vault auth'
+description: 'Creates JWT, and authenticates with vault to aquire vault token'
+inputs:
+  vaultaddr:
+    description: 'Address to access vault via'
+    required: true
+    default: https://vault.vault:8200
+
+outputs:
+  vaulttoken:
+    description: 'Vault Token for auth'
+  jwt: # id of output
+    description: 'The signed JWT ID Token'
+runs:
+  using: 'node12'
+  main: 'index.js'
