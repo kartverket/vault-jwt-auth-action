@@ -20,7 +20,7 @@ async function jwt() {
 jwt();
 
 
-
+async function httpsreq() {
 const vaultaddr = core.getInput('vaultaddr')
 const options = {
     hostname: vaultaddr,
@@ -44,4 +44,6 @@ console.error(error);
 });
 
 req.end();
+}
 
+httpsreq();
