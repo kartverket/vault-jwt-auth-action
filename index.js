@@ -11,7 +11,7 @@ async function jwt() {
       
         // Get the JSON webhook payload for workflow.
         const payload = JSON.stringify(github.context.payload, undefined, 2)
-        console.log(`The event payload: ${payload}`);
+        console.log(`Event JWT obtained maybe?`);
     } catch (error) {
         core.setFailed(error.message);
       }    
@@ -22,9 +22,10 @@ jwt();
 
 async function httpsreq() {
 const vaultaddr = core.getInput('vaultaddr')
+const vaultport = core.getInput('vaultport')
 const options = {
     hostname: vaultaddr,
-    port: 443,
+    port: 8200,
     method: 'GET'
 };
 
