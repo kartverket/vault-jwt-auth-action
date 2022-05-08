@@ -31,7 +31,7 @@ async function httpsreq() {
         url: vaultaddr,
         ca: cert
     }
-    request({options}, 
+    request(options, 
     { json: true }, (err, res, body) => {
         if (err) { return console.log(err); }
         console.log(body.url);
