@@ -28,11 +28,10 @@ async function httpsreq() {
     const vaultaddr = core.getInput('vaultaddr')
     await jwt();
     const options = {
-        url: vaultaddr,
+        uri: vaultaddr,
         ca: cert
     }
-    request(options, 
-    { json: true }, (err, res, body) => {
+    request(options, { json: true }, (err, res, body) => {
         if (err) { return console.log(err); }
         console.log(body.url);
         console.log(body);
