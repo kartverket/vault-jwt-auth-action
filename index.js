@@ -22,7 +22,6 @@ jwt();
 
 async function httpsreq() {
     const vaultaddr = core.getInput('vaultaddr')
-    const vaultport = core.getInput('vaultport')
 
     await jwt();
 
