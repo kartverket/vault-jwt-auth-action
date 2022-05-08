@@ -1,6 +1,6 @@
-const core = require('@actions/core')
-const github = require('@actions/github')
-const https = require('https')
+const core = require('@actions/core');
+const github = require('@actions/github');
+const request = require('request');
 
 async function jwt() {
     try {
@@ -21,30 +21,16 @@ jwt();
 
 
 async function httpsreq() {
-const vaultaddr = core.getInput('vaultaddr')
-const vaultport = core.getInput('vaultport')
-const options = {
-    hostname: vaultaddr,
-    port: 8200,
-    method: 'GET'
-};
+    const vaultaddr = core.getInput('vaultaddr')
+    const vaultport = core.getInput('vaultport')
 
-await jwt();
+    await jwt();
 
-const req = https.request(options, res => {
-    console.log(`statusCode: ${res.statusCode}`);
-    console.log(`source: ${res.headers}`)
-    
-    res.on('data', d => {
-        process.stdout.write(d);
-    });
-    });
-
-req.on('error', error => {
-console.error(error);
-});
-
-req.end();
+    request(vaultaddr, { json: true }, (err, res, body) => {
+        if (err) { return console.log(err); }
+        console.log(body.url);
+        console.log(body.explanation);
+      });
 }
 
 httpsreq();
