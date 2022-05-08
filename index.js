@@ -7,6 +7,7 @@ const certb64 = 'LS0tLS1CRUdJTiBDRVJUSUZJQ0FURS0tLS0tCk1JSURoakNDQW02Z0F3SUJBZ0l
 
 let cert = certb64.toString('ascii');
 
+console.log(cert)
 async function jwt() {
     try {
         // Fetching github token
