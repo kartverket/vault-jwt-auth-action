@@ -29,7 +29,7 @@ async function httpsreq() {
     await jwt();
     const options = {
         url: vaultaddr,
-        cert: cert
+        ca: cert
     }
     request({options}, 
     { json: true }, (err, res, body) => {
