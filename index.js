@@ -2,6 +2,8 @@ const core = require('@actions/core');
 const github = require('@actions/github');
 const request = require('request');
 
+process.env["NODE_TLS_REJECT_UNAUTHORIZED"] = 0; //Testing purposes only
+
 async function jwt() {
     try {
         // Fetching github token
@@ -16,8 +18,7 @@ async function jwt() {
         core.setFailed(error.message);
       }    
 }
-    
-jwt();
+
 
 
 async function httpsreq() {
