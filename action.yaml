@@ -16,6 +16,7 @@ inputs:
   certb64:
     description: 'Certificate encoded to b64 in 1 line'
     required: false
+    default: 'test'
   
 outputs:
   vaulttoken:
