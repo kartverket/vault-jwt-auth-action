@@ -50,7 +50,15 @@ async function makeRequest() {
     }
 
     //Making request to vault with config from prev step
-    axios(config).then(result => console.log(result.data)).catch((err) => {console.error(err.code)})
+    axios(config).then(result => console.log(result.code)).catch(function (error) {
+        if (error.response) {
+          console.log(error.response.data);
+          console.log(error.response.status);
+          console.log(error.response.headers);
+        }
+      });
+
+    //process.env['VAULT_TOKEN'] = result.data.somethingsomething
     
 }
 
