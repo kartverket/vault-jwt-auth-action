@@ -32,16 +32,13 @@ async function jwt() {
       }    
 }
 
-jwt();
-
-
-// trusting CA
-const httpsAgent = new https.Agent({
-    ca: cert,
-  });
-
 async function makeRequest() {
     // Wait for jwt to be fetched
+    // trusting CA
+    const httpsAgent = new https.Agent({
+        ca: cert,
+    });
+
     await jwt();
 
     //Setting up config for requeset to vault
@@ -60,23 +57,3 @@ async function makeRequest() {
 }
 
 makeRequest();
-
-/*
-const httpsAgent = new https.Agent({
-    ca: ''
-  });
-
-async function httpsrequest() {
-    const config = {
-        method: 'get',
-        url: 'https://vg.no',
-    }
-
-    axios(config, { httpsAgent }).then(response => console.log(response));
-    
-
-
-}
-
-httpsrequest();
-*/
