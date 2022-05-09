@@ -2,7 +2,16 @@ const core = require('@actions/core');
 const github = require('@actions/github');
 const axios = require('axios');
 
-const cb64 = core.getInput(certb64);
+
+var cb64 = core.getInput(certb64);
+var vaultaddr = core.getInput(vaultaddr)
+var role = core.getInput(role)
+var path = core.getInput(path)
+
+console.log(cb64)
+console.log(vaultaddr)
+console.log(role)
+console.log(path)
 
 var cert = Buffer.from(cb64, 'base64').toString('utf-8')
 
