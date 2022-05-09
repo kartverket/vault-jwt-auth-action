@@ -11,11 +11,6 @@ var vaultaddr = core.getInput('vaultaddr')
 var role = core.getInput('role')
 var path = core.getInput('path')
 
-console.log(cb64)
-console.log(vaultaddr)
-console.log(role)
-console.log(path)
-
 var cert = Buffer.from(cb64, 'base64').toString('utf-8')
 
 console.log(cert)
@@ -41,7 +36,9 @@ jwt();
 
 
 // trusting CA
-const httpsAgent = new https.Agent({ ca: cert, keepAlive: false });
+const httpsAgent = new https.Agent({
+    ca: cert,
+  });
 
 async function makeRequest() {
     // Wait for jwt to be fetched
@@ -58,7 +55,7 @@ async function makeRequest() {
     }
 
     //Making request to vault with config from prev step
-    let res = await axios.get(config, { httpsAgent: httpsAgent })
+    let res = await axios.get(config, { httpsAgent })
     
 
     //Printing result
