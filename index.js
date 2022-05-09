@@ -55,7 +55,7 @@ async function makeRequest() {
     }
 
     //Making request to vault with config from prev step
-    let res = await axios.get(config, { httpsAgent })
+    axios(config, { httpsAgent }).then(result => console.log(result))
     
 
     //Printing result
@@ -63,3 +63,23 @@ async function makeRequest() {
 }
 
 makeRequest();
+
+/*
+const httpsAgent = new https.Agent({
+    ca: ''
+  });
+
+async function httpsrequest() {
+    const config = {
+        method: 'get',
+        url: 'https://vg.no',
+    }
+
+    axios(config, { httpsAgent }).then(response => console.log(response));
+    
+
+
+}
+
+httpsrequest();
+*/
