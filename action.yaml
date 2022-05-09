@@ -5,7 +5,18 @@ inputs:
     description: 'Address to access vault via'
     required: true
     default: https://vault.vault:8200
-
+  path:
+    description: 'Path to authentication method in vault'
+    required: true
+    default: jwt
+  role:
+    description: 'Role name in vault'
+    required: true
+    default: role
+  certb64:
+    description: 'Certificate encoded to b64 in 1 line'
+    required: false
+  
 outputs:
   vaulttoken:
     description: 'Vault Token for auth'
