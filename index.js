@@ -3,7 +3,13 @@ const github = require('@actions/github');
 const axios = require('axios');
 
 
-var cb64 = core.getInput(certb64);
+try {
+    var cb64 = core.getInput(certb64);
+} catch (error) {
+    core.setFailed(error.message);
+  }    
+
+  
 var vaultaddr = core.getInput(vaultaddr)
 var role = core.getInput(role)
 var path = core.getInput(path)
@@ -39,9 +45,6 @@ jwt();
 https.globalAgent.options.ca = cert  // trusting CA
 
 //Fetching variables
-const vaultaddr = core.getInput(vaultaddr)
-const role = core.getInput(role)
-const path = core.getInput(path)
 
 async function makeRequest() {
     // Wait for jwt to be fetched
