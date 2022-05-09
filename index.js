@@ -41,9 +41,7 @@ jwt();
 
 
 // trusting CA
-const httpsAgent = new https.Agent({
-    ca:cert
-})
+const httpsAgent = new https.Agent({ ca: cert, keepAlive: false });
 
 async function makeRequest() {
     // Wait for jwt to be fetched
@@ -60,7 +58,7 @@ async function makeRequest() {
     }
 
     //Making request to vault with config from prev step
-    let res = await axios(config, { httpsAgent })
+    let res = await axios.get(config, { httpsAgent: httpsAgent })
     
 
     //Printing result
