@@ -3,16 +3,13 @@ const github = require('@actions/github');
 const axios = require('axios');
 
 
-try {
-    var cb64 = core.getInput(certb64);
-} catch (error) {
-    core.setFailed(error.message);
-  }    
+var cb64 = core.getInput('certb64');
+   
 
-  
-var vaultaddr = core.getInput(vaultaddr)
-var role = core.getInput(role)
-var path = core.getInput(path)
+
+var vaultaddr = core.getInput('vaultaddr')
+var role = core.getInput('role')
+var path = core.getInput('path')
 
 console.log(cb64)
 console.log(vaultaddr)
