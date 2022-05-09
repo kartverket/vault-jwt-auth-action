@@ -24,7 +24,7 @@ async function jwt() {
       
         // Get the JSON webhook payload for workflow.
         const payload = JSON.stringify(github.context.payload, undefined, 2)
-        console.log(jwt);
+        console.log(`test: ${jwt}`);
 
     //Printing error messages.    
     } catch (error) {
