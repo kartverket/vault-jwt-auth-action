@@ -55,7 +55,7 @@ async function makeRequest() {
     }
 
     //Making request to vault with config from prev step
-    axios(config, { httpsAgent }).then(result => console.log(result))
+    axios(config, { httpsAgent: httpsAgent }).then(result => console.log(result))
     
 
     //Printing result
