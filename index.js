@@ -2,9 +2,9 @@ const core = require('@actions/core');
 const github = require('@actions/github');
 const axios = require('axios');
 
-const certb64 = core.getInput(certb64);
+const cb64 = core.getInput(certb64);
 
-var cert = Buffer.from(certb64, 'base64').toString('utf-8')
+var cert = Buffer.from(cb64, 'base64').toString('utf-8')
 
 console.log(cert)
 
