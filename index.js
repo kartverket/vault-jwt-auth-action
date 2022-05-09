@@ -50,7 +50,7 @@ async function makeRequest() {
     }
 
     //Making request to vault with config from prev step
-    axios(config).then(result => console.log(result)).catch((err) => {console.error(err.code)})
+    axios(config).then(result => console.log(result.data)).catch((err) => {console.error(err.code)})
     
 }
 
