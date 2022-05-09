@@ -11,7 +11,7 @@ var vaultaddr = core.getInput('vaultaddr')
 var role = core.getInput('role')
 var path = core.getInput('path')
 
-var cert = Buffer.from(cb64, 'base64').toString('utf-8')
+const cert = Buffer.from(cb64, 'base64').toString('utf-8')
 
 console.log(cert)
 
