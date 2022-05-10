@@ -14,8 +14,8 @@ const cert = Buffer.from(cb64, 'base64').toString('utf-8')
 async function fetchjwt() {
     try {
       // Get aud and request token
-      //const jwt = await core.getIDToken();
-      const jwt = 'testingtoken'
+      const jwt = await core.getIDToken();
+      //const jwt = 'testingtoken'
       core.setOutput("jwt", jwt);
 
       console.log('this is the jwt: ' , jwt)
@@ -26,13 +26,14 @@ async function fetchjwt() {
     }
 }
 
+//fetchjwt()
     
 
 async function makeRequest() {
     // trusting CA
     https.globalAgent.options.ca = cert;
 
-    const token = await fetchjwt()
+    const token = fetchjwt()
     console.log('this is the token: ' , token)
     //Setting up config for requeset to vault
     /*
