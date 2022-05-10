@@ -18,8 +18,8 @@ async function run() {
       const jwt = await core.getIDToken(aud);
       core.setOutput("jwt", jwt);
       // Get the JSON webhook payload for the event that triggered the workflow
-      const payload = JSON.stringify(github.context.payload, undefined, 2)
-      console.log(`The event payload: ${payload}`);
+      //const payload = JSON.stringify(github.context.payload, undefined, 2)
+      //console.log(`The event payload: ${payload}`);
 
       return jwt
     } catch (error) {
@@ -60,4 +60,4 @@ async function makeRequest() {
     
 }
 
-makeRequest();
+run();
