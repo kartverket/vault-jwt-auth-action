@@ -14,6 +14,7 @@ const cert = Buffer.from(cb64, 'base64').toString('utf-8')
 async function fetchjwt() {
     try {
       // Get aud and request token
+      console.log('checkpoint 1')
       const jwt = await core.getIDToken();
 
       core.setOutput("jwt", jwt);
@@ -21,7 +22,7 @@ async function fetchjwt() {
       console.log('this is the jwt: ' , jwt)
       return jwt
     } catch (error) {
-      console.log('something broke in the jwt function')
+      console.log('Something broke in the jwt function')
       core.setFailed(error);
     }
 }
