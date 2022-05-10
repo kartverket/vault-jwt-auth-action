@@ -23,6 +23,7 @@ async function run() {
 
       return jwt
     } catch (error) {
+      console.log('this is jwt function')
       core.setFailed(error.message);
     }
 }
