@@ -11,27 +11,28 @@ const path = core.getInput('path')
 
 const cert = Buffer.from(cb64, 'base64').toString('utf-8')
 
-async function makeRequest() {
+async function fetchjwt() {
+    try {
+      // Get aud and request token
+      const jwt = await core.getIDToken();
+      //const jwt = 'testingtoken'
+      core.setOutput("jwt", jwt);
 
-    async function fetchjwt() {
-        try {
-          // Get aud and request token
-          const jwt = await core.getIDToken();
-          //const jwt = 'testingtoken'
-          core.setOutput("jwt", jwt);
-    
-          console.log('this is the jwt: ' , jwt)
-          return jwt
-        } catch (error) {
-          console.log('Something broke in the jwt function')
-          core.setFailed(error);
-        }
+      console.log('this is the jwt: ' , jwt)
+      return jwt
+    } catch (error) {
+      console.log('Something broke in the jwt function')
+      core.setFailed(error);
     }
+}
 
+const token = fetchjwt();
+    
+
+async function makeRequest() {
     // trusting CA
     https.globalAgent.options.ca = cert;
 
-    const token = await fetchjwt()
     console.log('this is the token: ' , token)
     //Setting up config for requeset to vault
     /*
