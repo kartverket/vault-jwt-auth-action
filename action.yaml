@@ -19,7 +19,7 @@ inputs:
     default: 'dGVzdAo='
   
 outputs:
-  vaulttoken:
+  VAULT_TOKEN:
     description: 'Vault Token for auth'
   jwt: # id of output
     description: 'The signed JWT ID Token'
