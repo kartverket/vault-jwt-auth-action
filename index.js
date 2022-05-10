@@ -62,4 +62,4 @@ async function makeRequest() {
     
 }
 
-run();
+makeRequest();
