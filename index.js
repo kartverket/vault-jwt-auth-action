@@ -17,8 +17,8 @@ async function jwt() {
       // Get aud and request token
       const aud = core.getInput('aud');
       const jwt = await core.getIDToken(aud);
-      core.setOutput("jwt", jwt);
-      
+      // core.setOutput("jwt", jwt);
+      return jwt
       // Get the JSON webhook payload for the event that triggered the workflow
       const payload = JSON.stringify(github.context.payload, undefined, 2)
       console.log(`The event payload: ${payload}`);
@@ -27,20 +27,19 @@ async function jwt() {
     }
     }
 
+    
 
 async function makeRequest() {
     // Wait for jwt to be fetched
     // trusting CA
     https.globalAgent.options.ca = cert;
-
-    await jwt();
-
+    const token = await jwt()
     //Setting up config for requeset to vault
     const config = {
         method: 'post',
         url: `${vaultaddr}/v1/auth/${path}/login`,
         data: { 
-            'jwt': jwt,
+            'jwt': token,
             'role': role 
         }
     }
