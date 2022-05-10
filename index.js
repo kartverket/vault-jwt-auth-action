@@ -21,9 +21,11 @@ async function jwt() {
         console.log(`The event payload: ${payload}`);
 
 
-    /*    
+        
     //Printing error messages.    
-    } catch (error) {
+    } 
+    /*
+   catch (error) {
         core.setFailed(error);
       }
     */    
