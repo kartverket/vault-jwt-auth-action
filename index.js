@@ -16,10 +16,7 @@ async function jwt() {
         // Fetching github token
         const jwt = await core.getIDToken();
         core.setOutput("jwt", jwt);
-      
-      
-        // Get the JSON webhook payload for workflow.
-        const payload = JSON.stringify(github.context.payload, undefined, 2)
+
         console.log(`test: ${jwt}`);
 
     //Printing error messages.    
