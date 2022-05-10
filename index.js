@@ -11,22 +11,22 @@ const path = core.getInput('path')
 
 const cert = Buffer.from(cb64, 'base64').toString('utf-8')
 
-async function jwt() {
+async function run() {
     try {
-      
       // Get aud and request token
       const aud = core.getInput('aud');
-      console.log('aud const ' , aud)
       const jwt = await core.getIDToken(aud);
-      
-      return jwt
+      core.setOutput("jwt", jwt);
+      // Get the JSON webhook payload for the event that triggered the workflow
+      const payload = JSON.stringify(github.context.payload, undefined, 2)
+      console.log(`The event payload: ${payload}`);
 
+      console.log('this is the jwt: ' , jwt)
     } catch (error) {
-      console.log('jwt function')
-      core.setFailed(error);
+      core.setFailed(error.message);
     }
 }
-
+run()
     
 
 async function makeRequest() {
@@ -59,4 +59,4 @@ async function makeRequest() {
     
 }
 
-makeRequest();
+//makeRequest();
