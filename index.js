@@ -26,7 +26,7 @@ async function fetchjwt() {
     }
 }
 
-//fetchjwt()
+fetchjwt()
     
 
 async function makeRequest() {
@@ -62,4 +62,4 @@ async function makeRequest() {
     
 }
 
-makeRequest();
+//makeRequest();
