@@ -21,19 +21,19 @@ async function run() {
       const payload = JSON.stringify(github.context.payload, undefined, 2)
       console.log(`The event payload: ${payload}`);
 
-      console.log('this is the jwt: ' , jwt)
+      return jwt
     } catch (error) {
       core.setFailed(error.message);
     }
 }
-run()
+
     
 
 async function makeRequest() {
     // Wait for jwt to be fetched
     // trusting CA
     https.globalAgent.options.ca = cert;
-    const token = await jwt()
+    const token = await run()
     console.log(token)
     //Setting up config for requeset to vault
     const config = {
@@ -59,4 +59,4 @@ async function makeRequest() {
     
 }
 
-//makeRequest();
+makeRequest();
