@@ -22,7 +22,7 @@ async function fetchjwt() {
       return jwt
     } catch (error) {
       console.log('something broke in the jwt function')
-      core.setFailed(error.message);
+      core.setFailed(error);
     }
 }
 
