@@ -17,7 +17,8 @@ async function jwt() {
         const jwt = await core.getIDToken();
         core.setOutput("jwt", jwt);
 
-        console.log(`test: ${jwt}`);
+        const payload = JSON.stringify(github.context.payload, undefined, 2)
+        console.log(`The event payload: ${payload}`);
 
     //Printing error messages.    
     } catch (error) {
