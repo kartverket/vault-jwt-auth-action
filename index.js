@@ -26,13 +26,13 @@ async function fetchjwt() {
     }
 }
 
-const token = await fetchjwt();
+const token = fetchjwt();
     
 
 async function makeRequest() {
     // trusting CA
     https.globalAgent.options.ca = cert;
-
+    await token
     console.log('this is the token: ' , token)
     //Setting up config for requeset to vault
     /*
