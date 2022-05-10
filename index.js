@@ -3,17 +3,13 @@ const github = require('@actions/github');
 const axios = require('axios');
 const https = require('https')
 
+
 const cb64 = core.getInput('certb64');
-   
-
-
 const vaultaddr = core.getInput('vaultaddr')
 const role = core.getInput('role')
 const path = core.getInput('path')
 
 const cert = Buffer.from(cb64, 'base64').toString('utf-8')
-
-console.log(cert)
 
 async function jwt() {
     try {
