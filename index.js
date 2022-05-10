@@ -18,7 +18,6 @@ async function fetchjwt() {
       //const jwt = 'testingtoken'
       core.setOutput("jwt", jwt);
 
-      console.log('this is the jwt: ' , jwt)
       return jwt
     } catch (error) {
       console.log('Something broke in the jwt function')
@@ -26,14 +25,15 @@ async function fetchjwt() {
     }
 }
 
-const token = fetchjwt();
+const tokenpromise = fetchjwt();
    
 
 async function makeRequest() {
     // trusting CA
     https.globalAgent.options.ca = cert;
 
-    await token.then(value => {console.log(value)})
+    const token = await tokenpromise;
+    console.log('token value is ' , token)
     //Setting up config for requeset to vault
     /*
     const config = {
