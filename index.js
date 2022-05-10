@@ -26,7 +26,7 @@ async function fetchjwt() {
     }
 }
 
-const token = fetchjwt();
+const token = await fetchjwt();
     
 
 async function makeRequest() {
