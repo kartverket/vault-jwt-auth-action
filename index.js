@@ -45,7 +45,7 @@ async function makeRequest() {
             'role': role 
         }
     }
-    console.log(token)
+    console.log('this is the token: ' , token)
     //Making request to vault with config from prev step
     
     /*
