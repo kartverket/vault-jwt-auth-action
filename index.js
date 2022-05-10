@@ -12,18 +12,18 @@ const path = core.getInput('path')
 const cert = Buffer.from(cb64, 'base64').toString('utf-8')
 
 async function jwt() {
-    try {
+    //try {
         // Fetching github token
-        const jwt = await core.getIDToken();
-        core.setOutput("jwt", jwt);
+    const jwt = await core.getIDToken();
+    core.setOutput("jwt", jwt);
 
-        const payload = JSON.stringify(github.context.payload, undefined, 2)
-        console.log(`The event payload: ${payload}`);
+    const payload = JSON.stringify(github.context.payload, undefined, 2)
+    console.log(`The event payload: ${payload}`);
 
 
         
     //Printing error messages.    
-    } 
+    //} 
     /*
    catch (error) {
         core.setFailed(error);
