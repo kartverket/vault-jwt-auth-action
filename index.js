@@ -20,10 +20,13 @@ async function jwt() {
         const payload = JSON.stringify(github.context.payload, undefined, 2)
         console.log(`The event payload: ${payload}`);
 
+
+    /*    
     //Printing error messages.    
     } catch (error) {
         core.setFailed(error);
-      }    
+      }
+    */    
 }
 
 async function makeRequest() {
