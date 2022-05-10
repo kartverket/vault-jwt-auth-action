@@ -35,7 +35,6 @@ async function makeRequest() {
     const token = await tokenpromise;
 
     //Setting up config for requeset to vault
-
     const config = {
         method: 'post',
         url: `${vaultaddr}/v1/auth/${path}/login`,
@@ -46,8 +45,6 @@ async function makeRequest() {
     }
     
     //Making request to vault with config from prev step
-    
-    
     axios(config).then(result => core.setOutput('VAULT_TOKEN', result.data.auth.client_token)).catch(function (error) {
         console.log('vault function')
         if (error.response) {
@@ -57,8 +54,7 @@ async function makeRequest() {
         }
       });
 
-    //process.env['VAULT_TOKEN'] = result.data.somethingsomething
-    
+
 }
 
 makeRequest();
