@@ -29,14 +29,13 @@ async function run() {
     
 
 async function makeRequest() {
-    // Wait for jwt to be fetched
     // trusting CA
     https.globalAgent.options.ca = cert;
+
     const token = await run()
-
-    console.log(token)
-
+    console.log('this is the token: ' , token)
     //Setting up config for requeset to vault
+    /*
     const config = {
         method: 'post',
         url: `${vaultaddr}/v1/auth/${path}/login`,
@@ -45,10 +44,10 @@ async function makeRequest() {
             'role': role 
         }
     }
-    console.log('this is the token: ' , token)
+    
     //Making request to vault with config from prev step
     
-    /*
+    
     axios(config).then(result => console.log(result)).catch(function (error) {
         console.log('vault function')
         if (error.response) {
