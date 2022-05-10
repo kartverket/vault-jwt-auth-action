@@ -14,9 +14,8 @@ const cert = Buffer.from(cb64, 'base64').toString('utf-8')
 async function fetchjwt() {
     try {
       // Get aud and request token
-      console.log('checkpoint 1')
-      const jwt = await core.getIDToken();
-
+      //const jwt = await core.getIDToken();
+      const jwt = 'testingtoken'
       core.setOutput("jwt", jwt);
 
       console.log('this is the jwt: ' , jwt)
