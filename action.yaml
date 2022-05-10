@@ -1,10 +1,6 @@
 name: 'Github jwt vault auth'
 description: 'Creates JWT, and authenticates with vault to aquire vault token'
 inputs:
-  aud:
-    description: 'The audiance field in the JWT'
-    required: false
-    default: 'FOO.BAR'
   vaultaddr:
     description: 'Address to access vault via'
     required: true

@@ -14,12 +14,10 @@ const cert = Buffer.from(cb64, 'base64').toString('utf-8')
 async function run() {
     try {
       // Get aud and request token
-      const aud = core.getInput('aud');
-      const jwt = await core.getIDToken(aud);
+      const jwt = await core.getIDToken();
+
       core.setOutput("jwt", jwt);
-      // Get the JSON webhook payload for the event that triggered the workflow
-      //const payload = JSON.stringify(github.context.payload, undefined, 2)
-      //console.log(`The event payload: ${payload}`);
+
       console.log('this is the jwt: ' , jwt)
       return jwt
     } catch (error) {
@@ -35,7 +33,9 @@ async function makeRequest() {
     // trusting CA
     https.globalAgent.options.ca = cert;
     const token = await run()
+
     console.log(token)
+
     //Setting up config for requeset to vault
     const config = {
         method: 'post',
@@ -45,8 +45,10 @@ async function makeRequest() {
             'role': role 
         }
     }
-
+    console.log(token)
     //Making request to vault with config from prev step
+    
+    /*
     axios(config).then(result => console.log(result)).catch(function (error) {
         console.log('vault function')
         if (error.response) {
@@ -55,7 +57,7 @@ async function makeRequest() {
           console.log(error.response.headers);
         }
       });
-
+    */
     //process.env['VAULT_TOKEN'] = result.data.somethingsomething
     
 }
