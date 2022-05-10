@@ -33,9 +33,9 @@ async function makeRequest() {
     https.globalAgent.options.ca = cert;
 
     const token = await tokenpromise;
-    console.log('token value is ' , token)
+
     //Setting up config for requeset to vault
-    /*
+
     const config = {
         method: 'post',
         url: `${vaultaddr}/v1/auth/${path}/login`,
@@ -56,7 +56,7 @@ async function makeRequest() {
           console.log(error.response.headers);
         }
       });
-    */
+
     //process.env['VAULT_TOKEN'] = result.data.somethingsomething
     
 }
