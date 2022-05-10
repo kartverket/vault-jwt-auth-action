@@ -16,6 +16,7 @@ async function jwt() {
       
       // Get aud and request token
       const aud = core.getInput('aud');
+      console.log('aud const ' , aud)
       const jwt = await core.getIDToken(aud);
       
       return jwt
