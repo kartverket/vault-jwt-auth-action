@@ -16,8 +16,6 @@ async function fetchjwt() {
     try {
       // Get aud and request token
       const jwt = await core.getIDToken();
-      //const jwt = 'testingtoken'
-      core.setOutput("jwt", jwt);
 
       return jwt
     } catch (error) {
