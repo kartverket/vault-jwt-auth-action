@@ -17,12 +17,6 @@ inputs:
     description: 'Certificate encoded to b64 in 1 line'
     required: false
     default: 'dGVzdAo='
-  
-outputs:
-  VAULT_TOKEN:
-    description: 'Vault Token for auth'
-  jwt: # id of output
-    description: 'The signed JWT ID Token'
 runs:
   using: 'node12'
   main: 'index.js'
