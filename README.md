@@ -4,21 +4,21 @@ This action authenticates with Hashicorp vault with github jwt token, and puts r
 
 ## Inputs
 
-## Vaultaddr (required)
+### Vaultaddr (required)
 
 Address to access vault via from runner.
 
 Default: https://vault.vault:8200
 
-## Path (required)
+### Path (required)
 
 The name of hte jwt authentication method you wish to use in vault.
 
-## Role (required)
+### Role (required)
 
 Name of role in jwt authentication method in vault.
 
-## Certb64 (optional)
+### Certb64 (optional)
 
 If you need a ca to verify the certificate used on the vault server, you can add it here as a base64 encoded string.
 
