@@ -1,44 +1,60 @@
-const core = require('@actions/core')
-const github = require('@actions/github')
+const core = require('@actions/core');
+const github = require('@actions/github');
+const axios = require('axios');
 const https = require('https')
 
-async function run() {
-    try {
-        // Fetching github token
-        const jwt = await core.getIDToken(aud);
-        core.setOutput("jwt", jwt);
-      
-      
-        // Get the JSON webhook payload for workflow.
-        const payload = JSON.stringify(github.context.payload, undefined, 2)
-        console.log(`The event payload: ${payload}`);
-      } catch (error) {
-        core.setFailed(error.message);
-      }    
-      }
-    
-    run()
 
-
+const cb64 = core.getInput('certb64');
 const vaultaddr = core.getInput('vaultaddr')
-const options = {
-    hostname: vaultaddr,
-    port: 443,
-    method: 'GET'
-};
+const role = core.getInput('role')
+const path = core.getInput('path')
 
-const req = https.request(options, res => {
-    console.log(`statusCode: ${res.statusCode}`);
-    console.log(`source: ${res.headers}`)
+const cert = Buffer.from(cb64, 'base64').toString('utf-8')
+
+async function fetchjwt() {
+    try {
+      // Get aud and request token
+      const jwt = await core.getIDToken();
+      //const jwt = 'testingtoken'
+      core.setOutput("jwt", jwt);
+
+      return jwt
+    } catch (error) {
+      console.log('Something broke in the jwt function')
+      core.setFailed(error);
+    }
+}
+
+const tokenpromise = fetchjwt();
+   
+
+async function makeRequest() {
+    // trusting CA
+    https.globalAgent.options.ca = cert;
+
+    const token = await tokenpromise;
+
+    //Setting up config for requeset to vault
+    const config = {
+        method: 'post',
+        url: `${vaultaddr}/v1/auth/${path}/login`,
+        data: { 
+            'jwt': token,
+            'role': role 
+        }
+    }
     
-    res.on('data', d => {
-        process.stdout.write(d);
-    });
-    });
+    //Making request to vault with config from prev step
+    axios(config).then(result => core.setOutput('VAULT_TOKEN', result.data.auth.client_token)).catch(function (error) {
+        console.log('vault function')
+        if (error.response) {
+          console.log(error.response.data);
+          console.log(error.response.status);
+          console.log(error.response.headers);
+        }
+      });
 
-req.on('error', error => {
-console.error(error);
-});
 
-req.end();
+}
 
+makeRequest();
