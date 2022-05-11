@@ -5,16 +5,21 @@ const https = require('https')
 
 
 //Fetching input values from action
-const cb64 = core.getInput('certb64');
+
 const vaultaddr = core.getInput('vaultaddr')
 const role = core.getInput('role')
 const path = core.getInput('path')
 
+//Checking if ca-cert is provided.
+const cb64 = core.getInput('certb64');
+if (cb64 != '') {
 const cert = Buffer.from(cb64, 'base64').toString('utf-8')
+}
+
 
 async function fetchjwt() {
     try {
-      // Get aud and request token
+      // Request token
       const jwt = await core.getIDToken();
 
       return jwt
@@ -28,9 +33,11 @@ const tokenpromise = fetchjwt();
    
 
 async function makeRequest() {
-    // trusting CA
-    https.globalAgent.options.ca = cert;
 
+    // trusting CA if provided.
+    if (cert) {
+    https.globalAgent.options.ca = cert;
+    }
     const token = await tokenpromise;
 
     //Setting up config for requeset to vault
