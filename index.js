@@ -4,6 +4,7 @@ const axios = require('axios');
 const https = require('https')
 
 
+//Fetching input values from action
 const cb64 = core.getInput('certb64');
 const vaultaddr = core.getInput('vaultaddr')
 const role = core.getInput('role')
@@ -45,8 +46,8 @@ async function makeRequest() {
     }
     
     //Making request to vault with config from prev step
-    axios(config).then(result => core.setOutput('VAULT_TOKEN', result.data.auth.client_token)).catch(function (error) {
-        console.log('vault function')
+    axios(config).then(result => process.env.VAULT_TOKEN =result.data.auth.client_token).catch(function (error) {
+        console.log('Somthing went wrong in vault request function')
         if (error.response) {
           console.log(error.response.data);
           console.log(error.response.status);
