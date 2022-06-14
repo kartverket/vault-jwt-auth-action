@@ -13,7 +13,10 @@ const path = core.getInput('path')
 //Checking if ca-cert is provided.
 const cb64 = core.getInput('certb64');
 if (cb64 != '') {
-const cert = Buffer.from(cb64, 'base64').toString('utf-8')
+  const cert = Buffer.from(cb64, 'base64').toString('utf-8')
+}
+else {
+  const cert = ''
 }
 
 
@@ -35,7 +38,7 @@ const tokenpromise = fetchjwt();
 async function makeRequest() {
 
     // trusting CA if provided.
-    if (cert) {
+    if (cert != '') {
     https.globalAgent.options.ca = cert;
     }
     const token = await tokenpromise;
