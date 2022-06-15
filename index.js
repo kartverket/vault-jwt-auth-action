@@ -52,20 +52,18 @@ async function makeRequest() {
     }
     
     //Making request to vault with config from prev step
-    axios(config).then(
-      result => 
+    try {
+      const result = await axios(config)
       process.env.VAULT_TOKEN = result.data.auth.client_token
       console.log(result.data.auth.client_token)
-      ).catch(function (error) {
-        console.log('Somthing went wrong in vault request function')
-        if (error.response) {
-          console.log(error.response.data);
-          console.log(error.response.status);
-          console.log(error.response.headers);
-        }
-      });
-
-
+    } catch (error) {
+      console.log('Somthing went wrong in vault request function')
+      if (error.response) {
+        console.log(error.response.data);
+        console.log(error.response.status);
+        console.log(error.response.headers);
+      }
+    }
 }
 
 makeRequest();
