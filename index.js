@@ -55,7 +55,6 @@ async function makeRequest() {
     try {
       const result = await axios(config)
       core.setOutput("token", result.data.auth.client_token)
-      console.log(process.env.VAULT_TOKEN)
     } catch (error) {
       console.log('Somthing went wrong in vault request function')
       if (error.response) {
