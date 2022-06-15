@@ -17,6 +17,9 @@ inputs:
     description: 'Certificate encoded to b64 in 1 line'
     required: false
     default: ''
+outputs:
+  token:
+    description: 'Vault token'
 runs:
   using: 'node12'
   main: 'index.js'

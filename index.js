@@ -54,7 +54,7 @@ async function makeRequest() {
     //Making request to vault with config from prev step
     try {
       const result = await axios(config)
-      process.env.VAULT_TOKEN = result.data.auth.client_token
+      core.setOutput("token", result.data.auth.client_token)
       console.log(process.env.VAULT_TOKEN)
     } catch (error) {
       console.log('Somthing went wrong in vault request function')
