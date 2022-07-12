@@ -1,6 +1,6 @@
 # Authenticate with vault
 
-This action authenticates with Hashicorp vault with github jwt token, and puts resulting token i env VAULT_TOKEN on runner. 
+This action authenticates with Hashicorp vault with github jwt token, and puts resulting token i env as `VAULT_TOKEN` on runner. 
 
 ## Inputs
 
