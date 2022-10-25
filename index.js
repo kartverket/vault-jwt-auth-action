@@ -1,9 +1,12 @@
 const core = require('@actions/core');
 const axios = require('axios');
 const https = require('https');
+const fs = require('fs');
 
 // Get input values for action
 var vaultaddr = core.getInput('vaultaddr');
+core.exportVariable('VAULT_ADDR', vaultaddr);
+
 var role = core.getInput('role');
 var path = core.getInput('path');
 var cert = '';
@@ -36,6 +39,7 @@ async function makeRequest() {
 
     if (cert) {
       https.globalAgent.options.ca = cert;
+      fs.writeFile("/tmp/ca.crt", cert)
     }
 
     // Make request to vault with config from prev step
