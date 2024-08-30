@@ -1,0 +1,38 @@
+# nonk8s
+apiVersion: "backstage.io/v1alpha1"
+kind: "Component"
+metadata:
+  name: "vault-jwt-auth-action"
+  tags:
+  - "public"
+spec:
+  type: "library"
+  lifecycle: "production"
+  owner: "skip"
+  system: "skip"
+---
+apiVersion: "backstage.io/v1alpha1"
+kind: "Group"
+metadata:
+  name: "security_champion_vault-jwt-auth-action"
+  title: "Security Champion vault-jwt-auth-action"
+spec:
+  type: "security_champion"
+  parent: "it_security_champions"
+  members:
+  - "omaen"
+  children:
+  - "resource:vault-jwt-auth-action"
+---
+apiVersion: "backstage.io/v1alpha1"
+kind: "Resource"
+metadata:
+  name: "vault-jwt-auth-action"
+  links:
+  - url: "https://github.com/kartverket/vault-jwt-auth-action"
+    title: "vault-jwt-auth-action på GitHub"
+spec:
+  type: "repo"
+  owner: "security_champion_vault-jwt-auth-action"
+  dependencyOf:
+  - "component:vault-jwt-auth-action"
